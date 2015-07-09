@@ -50,6 +50,68 @@ public class Game {
 			players.add(player);
 		}
 	}
-	public static void main(String args[]) {
+	public static void main(String args[]) throws Exception {
+
+		Game game = new Game("Player1", "Player2");
+		game.startGame();
+		System.out.println("Four Of A Kind Token Stack");
+		while (!game.playArea.getFourOfAKindTokens().isEmpty()) {
+			System.out.println(game.playArea.getFourOfAKindTokens().pop()
+					.getHonor());
+		}
+		System.out.println("\nSeven Unique Token Stack");
+		while (!game.playArea.getSevenUniqueTokens().isEmpty()) {
+			System.out.println(game.playArea.getSevenUniqueTokens().pop()
+					.getHonor());
+		}
+
+		System.out.println("\nThree Pair Token Stack");
+		while (!game.playArea.getThreePairTokens().isEmpty()) {
+			System.out.println(game.playArea.getThreePairTokens().pop()
+					.getHonor());
+		}
+
+		System.out.println("\nGeneric Token Stack");
+		while (!game.playArea.getGenericTokens().isEmpty()) {
+			System.out.println(game.playArea.getGenericTokens().pop()
+					.getHonor());
+		}
+
+		System.out.println("\nLake Tiles Stack");
+		while (!game.playArea.getLakeTiles().isEmpty()) {
+			LakeTile l = game.playArea.getLakeTiles().pop();
+			System.out.println(l.getColorOfFourSides().get(0).name() + " "
+					+ l.getColorOfFourSides().get(1).name() + " "
+					+ l.getColorOfFourSides().get(2).name() + " "
+					+ l.getColorOfFourSides().get(3).name() + " \n Platform : "
+					+ l.isPlatform());
+		}
+
+		for (int i = 0; i < game.numberOfPlayers; i++) {
+			System.out.print("Player" + i + " name : "
+					+ game.players.get(i).getName());
+			System.out.println("\nTheir Lake Tiles :");
+			for (int j = 0; j < game.players.get(i).getLakeTiles().size(); j++) {
+				System.out.println(j
+						+ 1
+						+ " "
+						+ game.players.get(i).getLakeTiles().get(j)
+								.getColorOfFourSides().get(0).name()
+						+ " "
+						+ game.players.get(i).getLakeTiles().get(j)
+								.getColorOfFourSides().get(1).name()
+						+ " "
+						+ game.players.get(i).getLakeTiles().get(j)
+								.getColorOfFourSides().get(2).name()
+						+ " "
+						+ game.players.get(i).getLakeTiles().get(j)
+								.getColorOfFourSides().get(3).name()
+						+ " "
+						+ "\nPlatform : "
+						+ game.players.get(i).getLakeTiles().get(j)
+								.isPlatform());
+			}
+			System.out.println("");
+		}
 	}
 }
